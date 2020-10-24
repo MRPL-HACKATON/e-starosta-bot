@@ -16,27 +16,27 @@ data = {
 }
 
 
-def getFacultets():
+def get_facultets():
     return data.keys()
 
 
-def getAllGroups():
+def get_all_groups():
     groups = []
     for facultet in data:
         groups = groups + list(data[facultet].keys())
     return groups
 
 
-def getGroups(facultet):
+def get_groups(facultet):
     return data[facultet]
 
 
-def getByGroupForDate(group, date):
-    facultet = findFacultetForGroup(group)
+def get_by_group_for_date(group, date):
+    facultet = find_facultet_for_group(group)
     return data[facultet][group][date]
 
 
-def findFacultetForGroup(group):
+def find_facultet_for_group(group):
     facultet = None
     for facultet in data:
         if group in facultet:
