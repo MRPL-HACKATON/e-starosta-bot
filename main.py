@@ -19,7 +19,7 @@ def start(update, context):
 
 def returnTimetable(update, context):
 	query = update.callback_query
-	group = str(query.data).split('=')[1];
+	group = str(query.data).split('=')[1]
 	timetable = getTodayTimetable(group)
 	update.message.reply_text(timetable) # тут валится, нет времени разбираться
 
