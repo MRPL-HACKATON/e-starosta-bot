@@ -1,18 +1,194 @@
-data = {
-    'Информатика': {
-        'КБ-001': {
-            '24.10.2020': {
-                '09:00': 'Информатика',
-                '09:50': 'Математика'
-            }
+faculty = {
+    'Информатика': ['КБ-001', 'КБ-002'],
+    'Туризм': ['ТР-001', 'ТР-002']
+}
+
+schedule = {
+    'КБ-001': {
+        'MONDAY': {
+            '1': 'Информатика',
+            '2': 'Математика',
+            '3': '',
+            '4': ''
         },
-        'КБ-002': {
-            '24.10.2020': {
-                '09:00': 'Информатика',
-                '09:50': 'Математика'
-            }
+        'TUESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
         }
-    }
+    },
+    'КБ-002': {
+        'MONDAY': {
+            'has_changes': False,
+            '1': 'Информатика',
+            '2': 'Математика',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    },
+    'ТР-001': {
+        'MONDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    },
+    'ТР-002': {
+        'MONDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            'has_changes': False,
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    },
+
+}
+
+change_list = {
+    'КБ-001': [],
+    'КБ-002': [],
+    'ТР-001': [],
+    'ТР-002': []
+}
+
+assigns_users = {
+    'КБ-001': [],
+    'КБ-002': [],
+    'ТР-001': [],
+    'ТР-002': []
 }
 
 
@@ -44,3 +220,24 @@ def findFacultetForGroup(group):
             break
 
     return facultet
+
+def getChanges():
+    return {
+        'group': ['MONDAY']
+    }
+
+def getDaySchedule(group, day):
+    return {
+        '1': 'First lesson',
+        '2': 'Second lesson',
+        '3': '',
+        '4': ''
+    }
+
+def uncheckChange(group, day):
+    #set has_change -> False
+    return
+
+def changeDaySchedule(group, day, lesson_num, lesson_name):
+    # set has_change -> True
+    return 
