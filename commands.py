@@ -1,5 +1,6 @@
 import telegram
 import utils
+import db_utils
 
 ACTION_SEPARATOR = '='
 
@@ -13,7 +14,7 @@ def start(update, context):
     :return:
     """
     keyboard = []
-    for group in utils.get_all_groups():
+    for group in db_utils.getAllGroups():
         callback_data = 'set_group' + ACTION_SEPARATOR + group
         keyboard.append([telegram.InlineKeyboardButton(group, callback_data=callback_data)])
 
@@ -30,14 +31,8 @@ def change_table(update, context):
     :param context:
     :return:
     """
-    change_lessons()  # заменить на смену расписания
-    check()  # заменить на проверку изменения в расписании, определение группы и дня (возможно сменить реализацию)
-    utils.notify('КБ-001', 'MONDAY')
 
+    db_utils.random_update()
+    utils.notify_all(db_utils.getPushList())
+    db_utils.cleanChangeList()
 
-def change_lessons():
-    pass
-
-
-def check():
-    pass

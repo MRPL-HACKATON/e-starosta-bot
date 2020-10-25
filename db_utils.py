@@ -238,7 +238,7 @@ def getAllFaculties():
     return faculties.keys()
 
 def getAllGroups():
-    return schedule.keys
+    return schedule.keys()
 
 def getAllGroupsOfFaculty(faculty_name):
     return faculties[faculty_name]
@@ -281,7 +281,9 @@ def updateSchedule(group_name, day_name, lesson_num, new_lesson_name):
 
 def subscribeUser(group_name, user_callback_id):
     group_name = group_name.strip()
-    if isGroupExists(group_name) and not isUserExists(user_callback_id):
+    if isGroupExists(group_name):
+        if isUserExists(user_callback_id):
+            unsubscribeUser(user_callback_id)
         assigns_users[group_name].append(user_callback_id)
         log("User {} subscribe to {} group".format(user_callback_id, group_name))
 
@@ -338,6 +340,15 @@ def random_update():
                         random.choice(day_names),
                         random.choice(lesson_nums),
                         random.choice(lessons_mock))
+
+def get_lessons_by_group_for_day(group, day):
+    if isGroupExists(group) and (day in day_names):
+        lessons = schedule[group][day]
+        return lessons
+    else:
+        log("No data for {} {}".format(group, day))
+        return None
+
 
 def log(message):
     print('[DB_UTILS] ' + message)
