@@ -52,4 +52,9 @@ def choose_group_action(update, context, query, group):
     if lessons:
         text = utils.format_timetable(group, lessons, day)
     context.bot.delete_message(chat_id=chat_id, message_id=message_id)
-    context.bot.send_message(chat_id=chat_id, text=text)
+
+    keyboard = []
+    keyboard.append([telegram.KeyboardButton("/unsubscribe")])
+    reply_markup = telegram.ReplyKeyboardMarkup(keyboard)
+
+    context.bot.send_message(chat_id=chat_id, text=text, reply_markup=reply_markup)
