@@ -19,7 +19,12 @@ def handle_callback_query(update, context):
 	[action, value] = parse_callback_data(query.data)
 
 	if action == 'set_group':
-		actions.set_group(query, context, value)
+		# actions.set_group(query, context, value)
+		pass
+	elif action == 'choose_faculty_action':
+		actions.choose_faculty_action(update, context, query, value)
+	elif action == 'choose_group_action':
+		actions.choose_group_action(update, context, query, value)
 
 
 def parse_callback_data(data):
@@ -32,7 +37,8 @@ def parse_callback_data(data):
 	return str(data).split(commands.ACTION_SEPARATOR)
 
 
-dispatcher.add_handler(telegram.ext.CommandHandler('start', commands.start))
+# dispatcher.add_handler(telegram.ext.CommandHandler('start', commands.start))
+dispatcher.add_handler(telegram.ext.CommandHandler('start', commands.chooce_faculty))
 dispatcher.add_handler(telegram.ext.CommandHandler('changetable', commands.change_table))
 
 dispatcher.add_handler(telegram.ext.CallbackQueryHandler(handle_callback_query))

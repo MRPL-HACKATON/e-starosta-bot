@@ -22,6 +22,18 @@ def start(update, context):
     update.message.reply_text('Привет. Для начала мне нужно узнать твою группу', reply_markup=reply_markup)
 
 
+def chooce_faculty(update, context):
+    keyboard = []
+    for faculty in db_utils.getAllFaculties():
+        callback_data = 'choose_faculty_action' + ACTION_SEPARATOR + faculty
+        keyboard.append([telegram.InlineKeyboardButton(faculty, callback_data=callback_data)])
+    reply_markup = telegram.InlineKeyboardMarkup(keyboard)
+    update.message.reply_text('Привет. Для начала мне нужно узнать твой факультет', reply_markup=reply_markup)
+
+def unsubscribe(update, context):
+    pass
+
+
 def change_table(update, context):
     """
     Обработка команды /changetable

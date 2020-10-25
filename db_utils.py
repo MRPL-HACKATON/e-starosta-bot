@@ -339,7 +339,7 @@ def random_update():
         updateSchedule( group,
                         random.choice(day_names),
                         random.choice(lesson_nums),
-                        random.choice(lessons_mock))
+                        random.choice(lessons_mock) + " (" + random.choice(range(560) + ")"))
 
 def get_lessons_by_group_for_day(group, day):
     if isGroupExists(group) and (day in day_names):
