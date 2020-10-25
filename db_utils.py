@@ -1,0 +1,366 @@
+faculties = {
+    'Информатика': ['КБ-001', 'КБ-002'],
+    'Туризм': ['ТР-001', 'ТР-002']
+}
+
+schedule = {
+    'КБ-001': {
+        'MONDAY': {
+            '1': 'Информатика',
+            '2': 'Математика',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    },
+    'КБ-002': {
+        'MONDAY': {
+            '1': 'Информатика',
+            '2': 'Математика',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    },
+    'ТР-001': {
+        'MONDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    },
+    'ТР-002': {
+        'MONDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'TUESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'WEDNESDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'THURSDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'FRIDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        },
+        'SATURDAY': {
+            '1': '',
+            '2': '',
+            '3': '',
+            '4': ''
+        }
+    }
+}
+
+change_list = {
+    'КБ-001': [],
+    'КБ-002': [],
+    'ТР-001': [],
+    'ТР-002': []
+}
+
+assigns_users = {
+    'КБ-001': [],
+    'КБ-002': [],
+    'ТР-001': [],
+    'ТР-002': []
+}
+
+schedule_group_template = {
+    'MONDAY': {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+    },
+    'TUESDAY': {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+    },
+    'WEDNESDAY': {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+    },
+    'THURSDAY': {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+    },
+    'FRIDAY': {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+    },
+    'SATURDAY': {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+    }
+}
+
+day_names = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']
+lesson_nums = ['1', '2', '3', '4']
+
+
+def createFaculty(faculty_name):
+    faculty_name = faculty_name.strip()
+    if not isFacultyExist(faculty_name):
+        faculties[faculty_name] = []
+        log("Faculty " + faculty_name + " created successful")
+        return
+    else :
+        log("Can not create faculty: " + faculty_name)
+
+def isFacultyExist(faculty_name):
+    for stored_faculty in faculties:
+        if stored_faculty == faculty_name:
+            return True
+    return False
+
+def getAllFaculties():
+    return faculties.keys()
+
+def getAllGroups():
+    return schedule.keys
+
+def getAllGroupsOfFaculty(faculty_name):
+    return faculties[faculty_name]
+
+def createGroup(faculty_name, group_name):
+    faculty_name = faculty_name.strip()
+    group_name = group_name.strip()
+
+    createFaculty(faculty_name)
+    
+    if not isGroupExists(group_name):
+        faculties[faculty_name].append(group_name)
+        schedule[group_name] = schedule_group_template
+        change_list[group_name] = []
+        assigns_users[group_name] = []
+        log("Group " + group_name + " created successful")
+        return
+    else:
+        log("Can not create group: " + group_name)
+
+def isGroupExists(group_name):
+    for faculty in faculties:
+        for group in faculties[faculty]:
+            if group == group_name:
+                return True
+    return False
+
+def updateSchedule(group_name, day_name, lesson_num, lesson_name):
+    if isGroupExists(group_name) and (day_name in day_names) and (lesson_num in lesson_num):
+        schedule[group_name][day_name][lesson_num] = str(lesson_name)
+        log("Schedule for " + group_name + " " + day_name + " " + lesson_num + " UPDATED")
+        if day_name not in change_list[group_name]:
+            change_list[group_name].append(day_name)
+            log(group_name + " " + day_name + " - add to group update list")
+    else:
+        log("Can not update schedule {} {} {} {}".format(group_name, day_name, lesson_num, lesson_name))
+
+def subscribeUser(group_name, user_callback_id):
+    group_name = group_name.strip()
+    if isGroupExists(group_name) and not isUserExists(user_callback_id):
+        assigns_users[group_name].append(user_callback_id)
+        log("User {} subscribe to {} group".format(user_callback_id, group_name))
+
+def unsubscribeUser(user_callback_id):
+    for group in assigns_users.keys():
+        if isUserExistsInGroup(group, user_callback_id):
+            assigns_users[group].remove(user_callback_id)
+            log("User {} unsubscribe from group {}".format(user_callback_id, group))
+    return
+
+def isUserExists(user_callback_id):
+    for group in assigns_users.keys():
+        if isUserExistsInGroup(group, user_callback_id):
+            return True
+    return False
+
+
+def isUserExistsInGroup(group_name, user_callback_id):
+    if isGroupExists(group_name):
+        if user_callback_id in assigns_users[group_name]:
+            return True
+    return False
+
+def getPushList():
+    # Return dict {user: [list of update data]}
+    data = {}
+    for group in change_list.keys():
+        if len(change_list[group]) > 0:
+            for user in assigns_users[group]:
+                for day in change_list[group]:
+                    if not user in data.keys():
+                        data[user] = {}
+                    if not day in data[user].keys():
+                        data[user][day] = {}
+                    data[user][day] = schedule[group][day]
+    return data
+
+
+def cleanChangeList():
+    for group in change_list.keys():
+        change_list[group] = []
+    log("Change list cleaned")
+
+def getGroupByUser(user_callback_id):
+    for group in assigns_users.keys():
+        if user_callback_id in assigns_users[group]:
+            return group
+    return 'Unknown'
+
+def log(message):
+    print('[DB_UTILS] ' + message)
+
+if __name__ == "__main__":
+    # Test
+    faculty_name = "test_faculty"
+    group_name = "test_group"
+    group_name_2 = "test_group_2"
+    user_id_1 = "555"
+    user_id_2 = "444"
+    lesson_name = "test_lesson"
+
+    print("--- Create groups ---")
+    createGroup(faculty_name, group_name)
+    createGroup(faculty_name, group_name_2)
+    print("\n")
+
+    print("--- Subscr and update ---")
+    subscribeUser(group_name, user_id_1)
+    updateSchedule(group_name, day_names[0], lesson_nums[0], lesson_name)
+    print(str(getPushList()) + "\n")
+
+    print("--- Unsubscr and get changes ---")
+    unsubscribeUser(user_id_1)
+    print(str(getPushList()) + "\n")
+
+    print("--- More than one user ---")
+    subscribeUser(group_name, user_id_1)
+    subscribeUser(group_name_2, user_id_2)
+    updateSchedule(group_name, day_names[0], lesson_nums[2], lesson_name)
+    updateSchedule(group_name, day_names[1], lesson_nums[1], lesson_name)
+    updateSchedule(group_name_2, day_names[4], lesson_nums[3], lesson_name)
+    print(str(getPushList()) + "\n")
+
+    print("--- Clean changes ---")
+    cleanChangeList()
+    print(str(getPushList()) + "\n")
+
+    print("--- Group by User ---")
+    print(str(getGroupByUser(user_id_1))+ "\n")
