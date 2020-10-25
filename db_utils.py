@@ -263,7 +263,7 @@ def isGroupExists(group_name):
     return False
 
 def updateSchedule(group_name, day_name, lesson_num, lesson_name):
-    if isGroupExists(group_name) and (day_name in day_names) and (lesson_num in lesson_num):
+    if isGroupExists(group_name) and (day_name in day_names) and (lesson_num in lesson_nums):
         schedule[group_name][day_name][lesson_num] = str(lesson_name)
         log("Schedule for " + group_name + " " + day_name + " " + lesson_num + " UPDATED")
         if day_name not in change_list[group_name]:
