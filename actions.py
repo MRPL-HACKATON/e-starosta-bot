@@ -19,10 +19,8 @@ def set_group(query, context, value):
 
     db_utils.subscribeUser(group, chat_id)
 
-    # utils.subscribe(group, chat_id)  # подписка на обновления
     day = utils.get_needed_day()  # получение необходимого дня для расписания
     lessons = db_utils.get_lessons_by_group_for_day(group, day)
-    # lessons = utils.get_by_group_for_date(group, day)  # получение расписания
     text = "No data"  # преобразование в строку
     if lessons:
         text = utils.format_timetable(group, lessons, day)
@@ -39,7 +37,7 @@ def choose_faculty_action(update, context, query, faculty):
         keyboard.append([telegram.InlineKeyboardButton(group, callback_data=callback_data)])
     reply_markup = telegram.InlineKeyboardMarkup(keyboard)
     context.bot.delete_message(chat_id=chat_id, message_id=message_id)
-    context.bot.send_message(chat_id=chat_id, text='Теперь мне нужно узнать твю группу', reply_markup=reply_markup)
+    context.bot.send_message(chat_id=chat_id, text=db_utils.choose_group_message, reply_markup=reply_markup)
 
 
 def choose_group_action(update, context, query, group):

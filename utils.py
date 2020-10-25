@@ -33,7 +33,7 @@ def format_timetable(group, lessons, day):
     :param day:
     :return:
     """
-    text = "Расписание на " + DAY_MAPPER[day] + " для " + group +"\n"
+    text = "Актуально на сегодня " + "\n" + group + " " + DAY_MAPPER[day] + "\n"
     for key, name in lessons.items():
         if key == 'has_changes':
             continue
@@ -48,7 +48,7 @@ def format_update_timetable(group, lessons, day):
     :param day:
     :return:
     """
-    text = "Обновлено расписание на " + DAY_MAPPER[day] + " для " + group +"\n"
+    text = db_utils.change_schedule_message + "\n" + group + " " + DAY_MAPPER[day] + "\n"
     for key, name in lessons.items():
         if key == 'has_changes':
             continue

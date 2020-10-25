@@ -28,7 +28,7 @@ def chooce_faculty(update, context):
         callback_data = 'choose_faculty_action' + ACTION_SEPARATOR + faculty
         keyboard.append([telegram.InlineKeyboardButton(faculty, callback_data=callback_data)])
     reply_markup = telegram.InlineKeyboardMarkup(keyboard)
-    update.message.reply_text('Привет. Для начала мне нужно узнать твой факультет', reply_markup=reply_markup)
+    update.message.reply_text(db_utils.start_message, reply_markup=reply_markup)
 
 def unsubscribe(update, context):
     chat_id = update['message']['chat_id']
@@ -36,7 +36,7 @@ def unsubscribe(update, context):
     keyboard = []
     keyboard.append([telegram.KeyboardButton("/start")])
     reply_markup = telegram.ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-    context.bot.send_message(chat_id=chat_id, text="Пороизошла отписка от обновлений", reply_markup=reply_markup)
+    context.bot.send_message(chat_id=chat_id, text="До встречи 👏️", reply_markup=reply_markup)
 
 
 def change_table(update, context):
