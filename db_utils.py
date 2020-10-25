@@ -1,6 +1,6 @@
 faculties = {
-    'Информатика': ['КБ-001', 'КБ-002'],
-    'Туризм': ['ТР-001', 'ТР-002']
+    'Кібербезпека': ['КБ-001', 'КБ-002'],
+    'Системний аналіз': ['СА-001', 'СА-002']
 }
 
 schedule = {
@@ -80,7 +80,7 @@ schedule = {
             '4': ''
         }
     },
-    'ТР-001': {
+    'СА-001': {
         'MONDAY': {
             '1': '',
             '2': '',
@@ -118,7 +118,7 @@ schedule = {
             '4': ''
         }
     },
-    'ТР-002': {
+    'СА-002': {
         'MONDAY': {
             '1': '',
             '2': '',
@@ -161,15 +161,15 @@ schedule = {
 change_list = {
     'КБ-001': [],
     'КБ-002': [],
-    'ТР-001': [],
-    'ТР-002': []
+    'СА-001': [],
+    'СА-002': []
 }
 
 assigns_users = {
     'КБ-001': [],
     'КБ-002': [],
-    'ТР-001': [],
-    'ТР-002': []
+    'СА-001': [],
+    'СА-002': []
 }
 
 schedule_group_template = {
@@ -213,6 +213,10 @@ schedule_group_template = {
 
 day_names = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']
 lesson_nums = ['1', '2', '3', '4']
+lessons_mock = ['Дискрена математика', 'Статистичні методи дослідження', 'Моделювання складних систем',
+                'Вища математика', 'Програмування', 'Іноземна мова', 'Основи психології', "Комп'ютерні мережі",
+                'Теорія ймовірності', 'Математична статистика', 'Теорія ігор', 'Інформаційна логістика',
+                'Економічний ризик та методи його моделювання']
 
 
 def createFaculty(faculty_name):
@@ -262,15 +266,18 @@ def isGroupExists(group_name):
                 return True
     return False
 
-def updateSchedule(group_name, day_name, lesson_num, lesson_name):
+def updateSchedule(group_name, day_name, lesson_num, new_lesson_name):
     if isGroupExists(group_name) and (day_name in day_names) and (lesson_num in lesson_nums):
-        schedule[group_name][day_name][lesson_num] = str(lesson_name)
+        if schedule[group_name][day_name][lesson_num] == str(new_lesson_name):
+            log("Lesson {} exists for {} {} {}".format(str(new_lesson_name), group_name, day_name, lesson_num))
+            return
+        schedule[group_name][day_name][lesson_num] = str(new_lesson_name)
         log("Schedule for " + group_name + " " + day_name + " " + lesson_num + " UPDATED")
         if day_name not in change_list[group_name]:
             change_list[group_name].append(day_name)
             log(group_name + " " + day_name + " - add to group update list")
     else:
-        log("Can not update schedule {} {} {} {}".format(group_name, day_name, lesson_num, lesson_name))
+        log("Can not update schedule {} {} {} {}".format(group_name, day_name, lesson_num, new_lesson_name))
 
 def subscribeUser(group_name, user_callback_id):
     group_name = group_name.strip()
@@ -324,6 +331,14 @@ def getGroupByUser(user_callback_id):
             return group
     return 'Unknown'
 
+def random_update():
+    import random
+    for group in schedule.keys():
+        updateSchedule( group,
+                        random.choice(day_names),
+                        random.choice(lesson_nums),
+                        random.choice(lessons_mock))
+
 def log(message):
     print('[DB_UTILS] ' + message)
 
@@ -361,6 +376,14 @@ if __name__ == "__main__":
     print("--- Clean changes ---")
     cleanChangeList()
     print(str(getPushList()) + "\n")
+
+    print("--- 3 random updates ---")
+    random_update()
+    random_update()
+    random_update()
+    print(str(getPushList()) + "\n")
+    cleanChangeList()
+
 
     print("--- Group by User ---")
     print(str(getGroupByUser(user_id_1))+ "\n")
