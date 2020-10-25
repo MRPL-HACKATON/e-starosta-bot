@@ -256,6 +256,7 @@ def changeDaySchedule(group, day, lesson_num, lesson_name):
 def get_needed_day():
     """
     Получаем день, для которого нужно отдать расписание
+
     :return:
     """
     day = datetime.datetime.today().strftime('%A').upper()
@@ -267,6 +268,7 @@ def get_needed_day():
 def format_timetable(lessons, day):
     """
     Формирует нормальный вывод в текст
+
     :param lessons:
     :param day:
     :return:
@@ -282,6 +284,7 @@ def format_timetable(lessons, day):
 def subscribe(group, chat_id):
     """
     Добавляет пользователя в список подписок для конкретной группы
+
     :param group:
     :param chat_id:
     :return:
@@ -295,6 +298,7 @@ def notify(group, day):
     """
     Формирует список пар для конкретной группы и дня.
     Оповещает всех, кто подписан на эту группу
+    
     :param group:
     :param day:
     :return:

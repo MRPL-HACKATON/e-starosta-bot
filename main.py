@@ -10,6 +10,7 @@ dispatcher = updater.dispatcher
 def handle_callback_query(update, context):
 	"""
 	Сюда летят все команды (все, что было отправлено начиная с слеша /)
+
 	:param update:
 	:param context:
 	:return:
@@ -24,6 +25,7 @@ def handle_callback_query(update, context):
 def parse_callback_data(data):
 	"""
 	Парсим callback_data из callback_query. Ранее сформировали как action=value
+
 	:param data:
 	:return:
 	"""

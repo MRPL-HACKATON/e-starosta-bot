@@ -7,6 +7,7 @@ ACTION_SEPARATOR = '='
 def start(update, context):
     """
     Обработка команды /start
+
     :param update:
     :param context:
     :return:
@@ -24,6 +25,7 @@ def change_table(update, context):
     """
     Обработка команды /changetable
     Фейковая смена расписания с последующим оповещением об этом
+
     :param update:
     :param context:
     :return:
