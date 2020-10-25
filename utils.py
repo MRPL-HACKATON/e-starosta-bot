@@ -215,7 +215,6 @@ def get_groups(facultet):
 
 
 def get_by_group_for_date(group, day):
-    day = day.upper()
     return schedule[group][day]
 
 
@@ -259,7 +258,7 @@ def get_needed_day():
     Получаем день, для которого нужно отдать расписание
     :return:
     """
-    day = datetime.datetime.today().strftime('%A')
+    day = datetime.datetime.today().strftime('%A').upper()
     if day == EXCLUDE_DAY:
         return 'MONDAY'
     return day
