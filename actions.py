@@ -53,6 +53,6 @@ def choose_group_action(update, context, query, group):
 
     keyboard = []
     keyboard.append([telegram.KeyboardButton("/unsubscribe")])
-    reply_markup = telegram.ReplyKeyboardMarkup(keyboard)
+    reply_markup = telegram.ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
 
     context.bot.send_message(chat_id=chat_id, text=text, reply_markup=reply_markup)

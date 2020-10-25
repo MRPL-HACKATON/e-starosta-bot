@@ -35,7 +35,7 @@ def unsubscribe(update, context):
     db_utils.unsubscribeUser(chat_id)
     keyboard = []
     keyboard.append([telegram.KeyboardButton("/start")])
-    reply_markup = telegram.ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    reply_markup = telegram.ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     context.bot.send_message(chat_id=chat_id, text="До встречи 👏️", reply_markup=reply_markup)
 
 

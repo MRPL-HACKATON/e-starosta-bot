@@ -40,6 +40,7 @@ def parse_callback_data(data):
 # dispatcher.add_handler(telegram.ext.CommandHandler('start', commands.start))
 dispatcher.add_handler(telegram.ext.CommandHandler('start', commands.chooce_faculty))
 dispatcher.add_handler(telegram.ext.CommandHandler('changetable', commands.change_table))
+dispatcher.add_handler(telegram.ext.CommandHandler('unsubscribe', commands.unsubscribe))
 
 dispatcher.add_handler(telegram.ext.CallbackQueryHandler(handle_callback_query))
 
