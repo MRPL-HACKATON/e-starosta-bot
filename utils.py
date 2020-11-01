@@ -33,7 +33,7 @@ def format_timetable(group, lessons, day):
     :param day:
     :return:
     """
-    text = "Актуально на сегодня " + "\n" + group + " " + DAY_MAPPER[day] + "\n"
+    text = "Актуально на сегодня " + "\n" + db_utils.fac_db['faculties'][group[:3]]['specialities'][group[:-3]]['name']+', '+db_utils.fac_db['faculties'][group[:3]]['specialities'][group[:-3]]['groups'][group] + "\n" + DAY_MAPPER[day] + ":\n"
     for key, name in lessons.items():
         if key == 'has_changes':
             continue
@@ -48,7 +48,7 @@ def format_update_timetable(group, lessons, day):
     :param day:
     :return:
     """
-    text = db_utils.change_schedule_message + "\n" + group + " " + DAY_MAPPER[day] + "\n"
+    text = db_utils.change_schedule_message + "\n" + db_utils.fac_db['faculties'][group[:3]]['specialities'][group[:-3]]['name']+', '+db_utils.fac_db['faculties'][group[:3]]['specialities'][group[:-3]]['groups'][group] + "\n" + DAY_MAPPER[day] + ":\n"
     for key, name in lessons.items():
         if key == 'has_changes':
             continue
